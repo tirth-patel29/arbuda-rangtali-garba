@@ -143,6 +143,7 @@ function ArtistCarousel({ artists }: { artists: (string | any)[][] }) {
   ]);
 
   const [activeIndex, setActiveIndex] = useState(4);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
   // Wheel Scroll Handoff
   useEffect(() => {
@@ -207,10 +208,14 @@ function ArtistCarousel({ artists }: { artists: (string | any)[][] }) {
     const onSelect = () => setActiveIndex(emblaApi.selectedScrollSnap());
 
     emblaApi.on("select", onSelect);
-    emblaApi.on('reInit', tweenScale);
+    emblaApi.on("reInit", () => {
+      setScrollSnaps(emblaApi.scrollSnapList());
+      tweenScale(emblaApi);
+    });
     emblaApi.on('scroll', tweenScale);
 
     onSelect();
+    setScrollSnaps(emblaApi.scrollSnapList());
     tweenScale(emblaApi);
 
     return () => {
@@ -245,6 +250,16 @@ function ArtistCarousel({ artists }: { artists: (string | any)[][] }) {
             </article>
           );
         })}
+      </div>
+      <div className="carousel-dots">
+        {scrollSnaps.map((_, index) => (
+          <button
+            key={index}
+            className={`carousel-dot ${index === activeIndex ? "active" : ""}`}
+            onClick={() => emblaApi?.scrollTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
@@ -291,7 +306,7 @@ function RangtaliPage() {
           <h1 className="sr-only">Arbuda Rangtali — Navratri Mahotsav</h1>
           <div className="hero-kicker"><span className="eyebrow-line" /> <span>ROYAL EVENTS PRESENTS</span></div>
           <Wordmark />
-          <p className="hero-line">મોડાસાની નવરાત્રી,<br /><em>એક નવી રંગતાળીમાં.</em></p>
+          <p className="hero-line adhipurush-font" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.2 }}>મોડાસાની નવરાત્રી,<br /><span>એક નવી રંગતાળીમાં.</span></p>
           <div className="hero-meta"><span>11—20 OCTOBER 2026</span><span className="meta-dot" /><span>KUMKUM PARTY PLOT · MODASA</span></div>
           <Countdown />
         </div>
@@ -302,8 +317,18 @@ function RangtaliPage() {
       <section id="about" className="intro-section section-dark">
         <div className="section-marker">01 <span>THE BEGINNING</span></div>
         <div className="intro-grid">
-          <div className="intro-lead"><p className="eyebrow">A FESTIVAL IN MOTION</p><h2>તાળીઓ વાગશે.<br /><em>ઢોલ વાગશે.</em></h2></div>
-          <div className="intro-copy"><p className="gujarati-copy">અને મોડાસા ફરી એકવાર ગરબે રમશે.</p><p>Nine nights. One circle. A thousand stories told in rhythm, colour, and the energy of a city that knows how to celebrate.</p><a className="text-link" href="#nights">ENTER THE NIGHTS <ArrowDownRight size={18} /></a></div>
+          <div className="intro-lead">
+            <p className="eyebrow">A FESTIVAL IN MOTION</p>
+            <h2 className="adhipurush-font animate-fade-in-up intro-custom-title">
+              <span className="intro-h2-small">માં અંબા અને માં અર્બુદાની અસીમ કૃપાથી…</span>
+              <span className="intro-h2-large">રંગતાળી ફરી જામશે.</span>
+            </h2>
+          </div>
+          <div className="intro-copy animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <p className="gujarati-copy">અને મોડાસા ફરી એકવાર ગરબે રમશે.</p>
+            <p>Nine nights. One circle. A thousand stories told in rhythm, colour, and the energy of a city that knows how to celebrate.</p>
+            <a className="text-link" href="#nights">ENTER THE NIGHTS <ArrowDownRight size={18} /></a>
+          </div>
         </div>
         <div className="intro-bottom"><span>ARBUDA RANGTALI / 2026</span><span>GUJARAT’S NEWEST GARBA RITUAL</span></div>
       </section>
@@ -329,7 +354,7 @@ function RangtaliPage() {
       <section id="venue" className="venue-section section-dark"><div className="section-marker">03 <span>FIND THE CIRCLE</span></div><div className="venue-grid"><div><p className="eyebrow">THE PLACE TO BE</p><h2>KumKum<br /><em>Party Plot</em></h2><p className="venue-address"><MapPin size={18} /> Meghraj Road, Bypass Chowkdi,<br />Modasa, Gujarat</p><Button asChild className="venue-button"><a href="https://www.google.com/maps/search/?api=1&query=KumKum+Party+Plot+Modasa" target="_blank" rel="noreferrer">GET DIRECTIONS <MoveUpRight size={16} /></a></Button></div><div className="map-embed"><iframe src="https://www.google.com/maps?q=23.4704765,73.310548&z=16&output=embed" loading="lazy" title="Venue Map" /><div className="map-overlay-card"><h4>KumKum Party Plot</h4><p>Meghraj Road, Bypass Chowkdi, Modasa, Gujarat 383315</p><div className="map-actions"><a href="https://www.google.com/maps/dir/?api=1&destination=23.4704765,73.310548" target="_blank" rel="noreferrer" aria-label="Get Directions"><MoveUpRight size={16} /></a></div></div></div></div><div className="venue-footer"><span><CalendarDays size={16} /> 11—20 OCTOBER 2026</span><span><Clock3 size={16} /> DOORS OPEN 7 PM</span></div></section>
 
       <section id="sponsors" className="sponsors-section section-dark">
-        <div className="section-heading"><div><p className="eyebrow">સહયોગથી સાકાર</p><h2>અમારા સ્પોન્સર્સ અને<br /><em>પાર્ટનર્સ</em></h2><p className="sponsors-subtext">જેમના વિશ્વાસ અને સહયોગથી અર્બુદા રંગતાળી બને છે વધુ ભવ્ય, વધુ યાદગાર.</p></div></div>
+        <div className="section-heading"><div><p className="eyebrow">સહયોગથી સાકાર</p><h2 className="adhipurush-font">અમારા સ્પોન્સર્સ અને<br /><em>પાર્ટનર્સ</em></h2><p className="sponsors-subtext">જેમના વિશ્વાસ અને સહયોગથી અર્બુદા રંગતાળી બને છે વધુ ભવ્ય, વધુ યાદગાર.</p></div></div>
         <div className="sponsors-grid">
           {[
             { img: kumkum, name: "Kum Kum Party Plot" },
@@ -359,7 +384,7 @@ function RangtaliPage() {
 
       <section className="social-section section-ivory"><div className="social-copy"><Instagram size={22} /><p className="eyebrow eyebrow-dark">FOLLOW THE RANGTALI</p><h2>Keep the<br /><em>circle close.</em></h2><a className="social-handle" href="https://instagram.com/arbuda_rangtali" target="_blank" rel="noreferrer">@ARBUDARANGTALI <ArrowUpRight size={17} /></a></div><div className="social-stamp"><div className="stamp-ring">ARBUDA · RANGTALI · MODASA · 2026 · </div><span>✳</span></div></section>
 
-      <section className="final-section"><div className="final-backdrop" /><div className="final-content"><p className="eyebrow">THE NIGHT IS YOURS</p><h2>મળીએ<br /><em>ગરબાની રાતે.</em></h2><p>See you where the dandiya meet.</p><a className="final-link" href="#top">BACK TO TOP <ChevronDown size={17} /></a></div></section>
+      <section className="final-section"><div className="final-backdrop" /><div className="final-content"><p className="eyebrow">THE NIGHT IS YOURS</p><h2 className="adhipurush-font">મળીએ<br /><em>ગરબાની રાતે.</em></h2><p>See you where the dandiya meet.</p><a className="final-link" href="#top">BACK TO TOP <ChevronDown size={17} /></a></div></section>
 
       <footer className="site-footer"><div><Wordmark compact /><p>© 2026 Arbuda Rangtali. All rights reserved.</p></div><div className="footer-details"><span>ROYAL EVENTS</span><span>IN ASSOCIATION WITH SWASTIK SOUND</span></div><a href="https://instagram.com/arbuda_rangtali" target="_blank" rel="noreferrer"><Instagram size={18} /> INSTAGRAM</a></footer>
     </main>
