@@ -1,0 +1,1998 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ivory: var(--ivory);
+  --color-gold: var(--gold);
+  --color-plum: var(--plum);
+  --color-burgundy: var(--burgundy);
+  --color-clay: var(--clay);
+}
+
+:root {
+  --background: oklch(0.12 0.028 340);
+  --foreground: oklch(0.95 0.025 80);
+  --card: oklch(0.19 0.032 340);
+  --card-foreground: oklch(0.95 0.025 80);
+  --popover: oklch(0.19 0.032 340);
+  --popover-foreground: oklch(0.95 0.025 80);
+  --primary: oklch(0.79 0.12 79);
+  --primary-foreground: oklch(0.16 0.028 340);
+  --secondary: oklch(0.24 0.045 340);
+  --secondary-foreground: oklch(0.95 0.025 80);
+  --muted: oklch(0.33 0.045 340);
+  --muted-foreground: oklch(0.72 0.03 80);
+  --accent: oklch(0.3 0.1 13);
+  --accent-foreground: oklch(0.96 0.02 80);
+  --border: oklch(0.95 0.025 80 / 17%);
+  --input: oklch(0.95 0.025 80 / 20%);
+  --ring: oklch(0.79 0.12 79);
+  --ivory: oklch(0.94 0.035 82);
+  --gold: oklch(0.77 0.12 79);
+  --plum: oklch(0.21 0.06 340);
+  --burgundy: oklch(0.31 0.11 15);
+  --clay: oklch(0.79 0.065 63);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "DM Sans", sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.festival-page {
+  overflow: hidden;
+  background: var(--plum);
+}
+
+.section-dark {
+  color: var(--foreground);
+  background: var(--plum);
+}
+
+.section-ivory {
+  color: var(--plum);
+  background: var(--ivory);
+}
+
+.section-clay {
+  color: var(--plum);
+  background: var(--clay);
+}
+
+.eyebrow {
+  color: var(--gold);
+  font: 600 0.67rem/1.2 "DM Sans", sans-serif;
+  letter-spacing: 0.19em;
+}
+
+.eyebrow-dark {
+  color: var(--burgundy);
+}
+
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--gold);
+  font-size: 0.68rem;
+  letter-spacing: .16em;
+}
+
+.section-marker span {
+  color: color-mix(in oklab, var(--foreground) 50%, transparent);
+  font-size: 0.6rem;
+  letter-spacing: .12em;
+}
+
+.site-nav {
+  align-items: center;
+  display: flex;
+  height: 76px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 4.5vw;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 20;
+  transition: background .4s ease, backdrop-filter .4s ease;
+}
+
+.site-nav-scrolled {
+  background: color-mix(in oklab, var(--plum) 84%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.wordmark {
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.wordmark-symbol {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.wordmark-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.wordmark-gujarati {
+  color: var(--ivory);
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.wordmark-subtitle {
+  color: var(--gold);
+  font-size: .48rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 30px;
+  margin-left: auto;
+  margin-right: 4vw;
+}
+
+.desktop-nav a,
+.nav-instagram,
+.footer-details,
+.site-footer>a {
+  font-size: .85rem;
+  letter-spacing: .13em;
+  transition: color .2s ease;
+}
+
+.desktop-nav a:hover,
+.nav-instagram:hover,
+.site-footer>a:hover {
+  color: var(--gold);
+}
+
+.nav-instagram {
+  align-items: center;
+  display: flex;
+  gap: 7px;
+}
+
+.menu-trigger {
+  display: none;
+  color: var(--foreground);
+}
+
+.hero-section {
+  min-height: 100svh;
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-image,
+.hero-shade {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  z-index: -2;
+}
+
+.hero-image {
+  object-position: center;
+}
+
+.hero-shade {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--plum) 93%, transparent) 0%, color-mix(in oklab, var(--plum) 51%, transparent) 65%, color-mix(in oklab, var(--plum) 14%, transparent) 100%), linear-gradient(0deg, color-mix(in oklab, var(--plum) 70%, transparent), transparent 45%);
+  z-index: -1;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 110px 9vw 90px;
+}
+
+.hero-kicker {
+  align-items: center;
+  color: var(--gold);
+  display: flex;
+  font-size: .62rem;
+  letter-spacing: .24em;
+  margin-bottom: 34px;
+}
+
+.eyebrow-line {
+  background: var(--gold);
+  height: 1px;
+  margin-right: 13px;
+  width: 36px;
+}
+
+.hero-content>.wordmark .wordmark-symbol {
+  height: 70px;
+  width: 70px;
+}
+
+.hero-content>.wordmark .wordmark-gujarati {
+  font-size: clamp(2.1rem, 4.7vw, 5.1rem);
+}
+
+.hero-content>.wordmark .wordmark-subtitle {
+  font-size: .67rem;
+}
+
+.hero-line {
+  color: var(--ivory);
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  line-height: 1.65;
+  margin: 27px 0 27px;
+}
+
+.hero-line em,
+h2 em,
+h3 em {
+  color: var(--gold);
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hero-meta {
+  align-items: center;
+  color: color-mix(in oklab, var(--ivory) 65%, transparent);
+  display: flex;
+  font-size: .61rem;
+  gap: 14px;
+  letter-spacing: .16em;
+}
+
+.meta-dot {
+  background: var(--gold);
+  border-radius: 50%;
+  height: 4px;
+  width: 4px;
+}
+
+.countdown {
+  display: flex;
+  gap: 27px;
+  margin-top: 49px;
+}
+
+.countdown-unit {
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+
+.countdown-unit strong {
+  color: var(--ivory);
+  font-size: clamp(1.7rem, 3vw, 3.05rem);
+  font-weight: 300;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+.countdown-unit span {
+  align-self: flex-end;
+  color: var(--gold);
+  font-size: .54rem;
+  letter-spacing: .14em;
+  padding-bottom: 3px;
+}
+
+.countdown-divider {
+  color: var(--gold);
+  position: absolute;
+  right: -19px;
+  top: 50%;
+}
+
+.countdown-live {
+  align-items: center;
+  color: var(--gold);
+  display: flex;
+  font-size: .8rem;
+  gap: 12px;
+  letter-spacing: .2em;
+  margin-top: 49px;
+}
+
+.hero-mandala {
+  align-items: center;
+  border: 1px solid color-mix(in oklab, var(--gold) 28%, transparent);
+  border-radius: 50%;
+  color: color-mix(in oklab, var(--gold) 35%, transparent);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+
+.mandala-large {
+  animation: spin 80s linear infinite;
+  height: min(64vw, 820px);
+  right: -16vw;
+  top: 15%;
+  width: min(64vw, 820px);
+}
+
+.mandala-large::before,
+.mandala-large::after {
+  border: 1px solid color-mix(in oklab, var(--gold) 22%, transparent);
+  border-radius: 50%;
+  content: "";
+  inset: 7%;
+  position: absolute;
+}
+
+.mandala-large::after {
+  inset: 15%;
+}
+
+.mandala-large span {
+  font-size: .55rem;
+  letter-spacing: .7em;
+  transform: rotate(-45deg);
+}
+
+.scroll-cue {
+  align-items: center;
+  bottom: 36px;
+  display: flex;
+  gap: 15px;
+  left: 9vw;
+  position: absolute;
+  transform: rotate(-90deg) translateX(-100%);
+  transform-origin: left top;
+}
+
+.scroll-cue span {
+  color: color-mix(in oklab, var(--ivory) 58%, transparent);
+  font-size: .55rem;
+  letter-spacing: .21em;
+}
+
+.scroll-cue i {
+  background: var(--gold);
+  display: block;
+  height: 1px;
+  width: 50px;
+}
+
+.hero-corner-note {
+  align-items: flex-end;
+  bottom: 48px;
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 6vw;
+}
+
+.hero-corner-note span:first-child {
+  color: var(--gold);
+  font: italic 2.8rem/1 "Cormorant Garamond", serif;
+}
+
+.hero-corner-note span:last-child {
+  color: color-mix(in oklab, var(--ivory) 57%, transparent);
+  font-size: .52rem;
+  letter-spacing: .13em;
+  line-height: 1.5;
+}
+
+.intro-section,
+.nights-section,
+.artists-section,
+.experience-section,
+.venue-section,
+.social-section {
+  padding: 120px 9vw;
+}
+
+.intro-grid {
+  display: grid;
+  gap: 11vw;
+  grid-template-columns: 1.2fr .8fr;
+  margin: 93px 0 150px;
+}
+
+h2 {
+  font-size: clamp(4rem, 9vw, 9.5rem);
+  font-weight: 300;
+  letter-spacing: -.06em;
+  line-height: .83;
+  margin: 0;
+}
+
+.intro-lead h2 {
+  margin-top: 24px;
+}
+
+.intro-copy {
+  align-self: end;
+  max-width: 340px;
+}
+
+.gujarati-copy {
+  color: var(--gold);
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: 1.55rem;
+  line-height: 1.6;
+  margin: 0 0 23px;
+}
+
+.intro-copy>p:not(.gujarati-copy) {
+  color: color-mix(in oklab, var(--foreground) 63%, transparent);
+  font-size: .9rem;
+  line-height: 1.9;
+}
+
+.experience-intro>p:not(.gujarati-copy) {
+  color: color-mix(in oklab, var(--plum) 63%, transparent);
+  font-size: .9rem;
+  line-height: 1.9;
+}
+
+.experience-intro .gujarati-copy {
+  color: var(--burgundy);
+}
+
+.text-link {
+  align-items: center;
+  border-bottom: 1px solid var(--gold);
+  color: var(--gold);
+  display: inline-flex;
+  font-size: .62rem;
+  gap: 12px;
+  letter-spacing: .16em;
+  margin-top: 31px;
+  padding-bottom: 10px;
+}
+
+.intro-bottom,
+.venue-footer {
+  border-top: 1px solid var(--border);
+  color: color-mix(in oklab, var(--foreground) 50%, transparent);
+  display: flex;
+  font-size: .54rem;
+  justify-content: space-between;
+  letter-spacing: .18em;
+  padding-top: 16px;
+}
+
+.section-heading {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 76px;
+}
+
+.section-heading h2 {
+  margin-top: 27px;
+}
+
+.heading-aside {
+  align-items: flex-end;
+  display: flex;
+  gap: 12px;
+}
+
+.heading-aside span {
+  font: italic 4rem/1 "Cormorant Garamond", serif;
+}
+
+.heading-aside p {
+  font-size: .57rem;
+  letter-spacing: .12em;
+  line-height: 1.6;
+  margin: 0 0 5px;
+}
+
+.nights-list {
+  border-top: 1px solid color-mix(in oklab, var(--plum) 25%, transparent);
+}
+
+.night-row {
+  align-items: center;
+  border-bottom: 1px solid color-mix(in oklab, var(--plum) 25%, transparent);
+  display: grid;
+  gap: 2vw;
+  grid-template-columns: 100px 1fr 50px;
+  padding: 24px 0;
+  transition: padding .3s ease, background .3s ease;
+}
+
+.night-row:hover {
+  background: color-mix(in oklab, var(--plum) 5%, transparent);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.night-date {
+  align-items: baseline;
+  display: flex;
+  font: italic 2.6rem/1 "Cormorant Garamond", serif;
+  gap: 8px;
+}
+
+.night-date small,
+.night-artist small {
+  font: 500 .55rem/1 "DM Sans", sans-serif;
+  letter-spacing: .15em;
+}
+
+.night-artist {
+  display: grid;
+  gap: 6px;
+}
+
+.night-artist strong {
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: 1.22rem;
+  font-weight: 500;
+}
+
+.night-artist small {
+  letter-spacing: .18em;
+  opacity: .55;
+}
+
+.night-arrow {
+  align-items: center;
+  border: 1px solid color-mix(in oklab, var(--plum) 30%, transparent);
+  border-radius: 50%;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  transition: all .3s ease;
+  width: 36px;
+}
+
+.night-row:hover .night-arrow {
+  background: var(--plum);
+  color: var(--ivory);
+  transform: rotate(45deg);
+}
+
+.calendar-note {
+  align-items: center;
+  color: color-mix(in oklab, var(--plum) 60%, transparent);
+  display: flex;
+  font-size: .63rem;
+  gap: 11px;
+  letter-spacing: .12em;
+  margin-top: 30px;
+}
+
+.note-line {
+  background: color-mix(in oklab, var(--plum) 28%, transparent);
+  height: 1px;
+  margin-left: auto;
+  width: 45%;
+}
+
+.statement-band {
+  align-items: center;
+  background: var(--burgundy);
+  color: var(--ivory);
+  display: flex;
+  justify-content: center;
+  min-height: 48vh;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.statement-band p {
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: clamp(2.7rem, 6vw, 6.5rem);
+  line-height: 1.35;
+  position: relative;
+  z-index: 1;
+}
+
+.statement-band p em {
+  color: var(--gold);
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.statement-band>span {
+  bottom: 32px;
+  font-size: .57rem;
+  left: 9vw;
+  letter-spacing: .2em;
+  position: absolute;
+}
+
+.statement-ring {
+  animation: spin 50s linear infinite;
+  border: 1px solid color-mix(in oklab, var(--gold) 35%, transparent);
+  border-radius: 50%;
+  color: color-mix(in oklab, var(--gold) 60%, transparent);
+  font-size: 6rem;
+  height: 420px;
+  line-height: 420px;
+  position: absolute;
+  width: 420px;
+}
+
+.artists-section {
+  padding-bottom: 160px;
+}
+
+.artists-heading {
+  align-items: flex-end;
+}
+
+.artists-intro {
+  color: color-mix(in oklab, var(--foreground) 54%, transparent);
+  font-size: .9rem;
+  line-height: 1.8;
+  max-width: 275px;
+}
+
+.artist-list {
+  border-top: 1px solid var(--border);
+}
+
+.artist-card {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 36% 1fr;
+  min-height: 185px;
+  overflow: hidden;
+  position: relative;
+  transition: background .35s ease;
+}
+
+.artist-card:hover {
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+}
+
+.artist-portrait {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin-left: 0;
+  overflow: hidden;
+  position: relative;
+  width: 255px;
+  box-shadow: 0 0 15px color-mix(in oklab, var(--gold) 20%, transparent);
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+}
+
+.artist-card:hover .artist-portrait {
+  box-shadow: 0 0 25px color-mix(in oklab, var(--gold) 50%, transparent);
+  border-color: var(--gold);
+}
+
+.artist-portrait::before {
+  background: linear-gradient(145deg, color-mix(in oklab, var(--gold) 58%, transparent), color-mix(in oklab, var(--burgundy) 80%, transparent));
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+  opacity: .4;
+  mix-blend-mode: multiply;
+}
+
+.portrait-rose::before {
+  background: linear-gradient(145deg, var(--burgundy), var(--gold));
+}
+
+.portrait-clay::before {
+  background: linear-gradient(145deg, var(--clay), var(--burgundy));
+}
+
+.portrait-plum::before {
+  background: linear-gradient(145deg, var(--muted), var(--accent));
+}
+
+.portrait-gold::before {
+  background: linear-gradient(145deg, var(--gold), var(--plum));
+}
+
+.portrait-ink::before {
+  background: linear-gradient(145deg, var(--muted), var(--plum));
+}
+
+.portrait-ruby::before {
+  background: linear-gradient(145deg, var(--burgundy), var(--accent));
+}
+
+.portrait-saffron::before {
+  background: linear-gradient(145deg, var(--gold), var(--clay));
+}
+
+.portrait-wine::before {
+  background: linear-gradient(145deg, var(--accent), var(--plum));
+}
+
+.portrait-note {
+  color: var(--ivory);
+  font-size: .5rem;
+  left: 14px;
+  letter-spacing: .14em;
+  line-height: 1.5;
+  position: absolute;
+  top: 14px;
+  z-index: 3;
+}
+
+.artist-info {
+  align-items: center;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 50px 1fr 70px;
+}
+
+.artist-number {
+  color: var(--gold);
+  font: italic 1.45rem/1 "Cormorant Garamond", serif;
+}
+
+.artist-info h3 {
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0 0 2px;
+}
+
+.artist-info p {
+  color: color-mix(in oklab, var(--foreground) 52%, transparent);
+  font-size: .64rem;
+  letter-spacing: .17em;
+  margin: 0;
+}
+
+.artist-date {
+  color: var(--gold);
+  font-size: .58rem;
+  letter-spacing: .17em;
+}
+
+.lineup-note {
+  color: color-mix(in oklab, var(--foreground) 40%, transparent);
+  font-size: .57rem;
+  letter-spacing: .08em;
+  margin-top: 23px;
+}
+
+.experience-section {
+  padding-bottom: 135px;
+}
+
+.experience-section h2 em,
+.experience-section h3 em {
+  color: var(--burgundy);
+}
+
+.experience-layout {
+  display: grid;
+  gap: 10vw;
+  grid-template-columns: 1.15fr .85fr;
+  margin-bottom: 100px;
+}
+
+.experience-intro {
+  align-self: end;
+  max-width: 340px;
+}
+
+.experience-grid {
+  border-top: 1px solid color-mix(in oklab, var(--plum) 22%, transparent);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.experience-grid>div {
+  border-right: 1px solid color-mix(in oklab, var(--plum) 22%, transparent);
+  min-height: 265px;
+  padding: 24px;
+}
+
+.experience-grid>div:first-child {
+  border-left: 1px solid color-mix(in oklab, var(--plum) 22%, transparent);
+}
+
+.experience-grid span {
+  color: var(--burgundy);
+  font: italic 1.2rem "Cormorant Garamond", serif;
+}
+
+.experience-grid h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: .95;
+  margin: 75px 0 17px;
+}
+
+.experience-grid p {
+  font-size: .66rem;
+  line-height: 1.6;
+  max-width: 150px;
+  opacity: .68;
+}
+
+.venue-section {
+  padding-bottom: 35px;
+}
+
+.venue-grid {
+  display: grid;
+  gap: 9vw;
+  grid-template-columns: .8fr 1.2fr;
+  margin: 95px 0 90px;
+}
+
+.venue-grid h2 {
+  font-size: clamp(3.6rem, 7.5vw, 8rem);
+  margin: 27px 0 38px;
+}
+
+.venue-address {
+  align-items: flex-start;
+  color: color-mix(in oklab, var(--foreground) 65%, transparent);
+  display: flex;
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: 1rem;
+  gap: 10px;
+  line-height: 1.7;
+}
+
+.venue-address svg {
+  color: var(--gold);
+  flex: none;
+  margin-top: 5px;
+}
+
+.venue-button {
+  background: var(--gold);
+  color: var(--plum);
+  font-size: .6rem;
+  letter-spacing: .16em;
+  margin-top: 28px;
+  padding-inline: 20px;
+}
+
+.venue-button:hover {
+  background: var(--ivory);
+}
+
+.map-art {
+  background: color-mix(in oklab, var(--foreground) 5%, transparent);
+  min-height: 410px;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-grid {
+  background-image: linear-gradient(color-mix(in oklab, var(--gold) 14%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--gold) 14%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  inset: -50px;
+  opacity: .4;
+  position: absolute;
+  transform: rotate(-12deg);
+}
+
+.map-art::before {
+  border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent);
+  border-radius: 50%;
+  content: "";
+  height: 330px;
+  left: 23%;
+  position: absolute;
+  top: 8%;
+  width: 330px;
+}
+
+.map-art::after {
+  border: 1px solid color-mix(in oklab, var(--gold) 29%, transparent);
+  border-radius: 50%;
+  content: "";
+  height: 230px;
+  left: 31%;
+  position: absolute;
+  top: 20%;
+  width: 230px;
+}
+
+.map-pin {
+  align-items: center;
+  color: var(--gold);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  left: 45%;
+  position: absolute;
+  top: 38%;
+  z-index: 1;
+}
+
+.map-pin svg {
+  filter: drop-shadow(0 0 14px var(--gold));
+}
+
+.map-pin span {
+  font-size: .52rem;
+  letter-spacing: .16em;
+  white-space: nowrap;
+}
+
+.map-label {
+  color: color-mix(in oklab, var(--foreground) 48%, transparent);
+  font-size: .5rem;
+  letter-spacing: .15em;
+  position: absolute;
+  transform: rotate(-25deg);
+}
+
+.map-label-a {
+  left: 10%;
+  top: 27%;
+}
+
+.map-label-b {
+  bottom: 25%;
+  right: 9%;
+  transform: rotate(28deg);
+}
+
+.map-coordinates {
+  bottom: 18px;
+  color: color-mix(in oklab, var(--foreground) 40%, transparent);
+  font-size: .52rem;
+  letter-spacing: .15em;
+  position: absolute;
+  right: 20px;
+}
+
+.venue-footer {
+  margin-top: 0;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.venue-footer span {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.venue-footer svg {
+  color: var(--gold);
+}
+
+.social-section {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-height: 490px;
+}
+
+.social-copy>svg {
+  color: var(--burgundy);
+  margin-bottom: 30px;
+}
+
+.social-copy h2 {
+  font-size: clamp(4rem, 8vw, 8rem);
+  margin: 25px 0 39px;
+}
+
+.social-handle {
+  align-items: center;
+  border-bottom: 1px solid var(--burgundy);
+  display: inline-flex;
+  font-size: .66rem;
+  gap: 15px;
+  letter-spacing: .2em;
+  padding-bottom: 12px;
+}
+
+.social-stamp {
+  align-items: center;
+  border: 1px solid color-mix(in oklab, var(--plum) 24%, transparent);
+  border-radius: 50%;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  position: relative;
+  width: 300px;
+}
+
+.social-stamp::before {
+  border: 1px solid color-mix(in oklab, var(--plum) 16%, transparent);
+  border-radius: 50%;
+  content: "";
+  inset: 22px;
+  position: absolute;
+}
+
+.stamp-ring {
+  animation: spin 45s linear infinite;
+  font-size: .47rem;
+  letter-spacing: .24em;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.social-stamp span {
+  color: var(--burgundy);
+  font-size: 3rem;
+}
+
+.final-section {
+  background: var(--plum);
+  min-height: 75vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.final-backdrop {
+  background: linear-gradient(90deg, var(--plum), color-mix(in oklab, var(--burgundy) 44%, var(--plum)));
+  inset: 0;
+  position: absolute;
+}
+
+.final-backdrop::after {
+  border: 1px solid color-mix(in oklab, var(--gold) 23%, transparent);
+  border-radius: 50%;
+  content: "";
+  height: 78vw;
+  position: absolute;
+  right: -24vw;
+  top: -5vw;
+  width: 78vw;
+}
+
+.final-content {
+  padding: 155px 9vw;
+  position: relative;
+  z-index: 1;
+}
+
+.final-content h2 {
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: clamp(4rem, 10vw, 10rem);
+  line-height: 1.08;
+  margin: 38px 0 28px;
+}
+
+.final-content h2 em {
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.final-content>p:not(.eyebrow) {
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+  font: 1.2rem "Cormorant Garamond", serif;
+}
+
+.final-link {
+  align-items: center;
+  border-bottom: 1px solid var(--gold);
+  display: inline-flex;
+  font-size: .61rem;
+  gap: 12px;
+  letter-spacing: .16em;
+  margin-top: 57px;
+  padding-bottom: 10px;
+}
+
+.final-link svg {
+  transform: rotate(180deg);
+}
+
+.site-footer {
+  align-items: flex-end;
+  background: var(--plum);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  padding: 38px 9vw;
+}
+
+.site-footer p {
+  color: color-mix(in oklab, var(--foreground) 44%, transparent);
+  font-size: .55rem;
+  margin: 22px 0 0;
+}
+
+.footer-details {
+  display: grid;
+  gap: 8px;
+  opacity: .58;
+  text-align: center;
+}
+
+.mobile-menu {
+  background: var(--plum);
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  padding: 24px 8vw;
+  position: fixed;
+  z-index: 30;
+}
+
+.mobile-menu-top {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobile-menu-top .menu-trigger {
+  display: flex;
+}
+
+.mobile-menu-links {
+  display: grid;
+  margin: auto 0;
+}
+
+.mobile-menu-links a {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  font: 2.8rem "Cormorant Garamond", serif;
+  gap: 17px;
+  justify-content: space-between;
+  padding: 19px 0;
+}
+
+.mobile-menu-links small {
+  color: var(--gold);
+  font: .6rem "DM Sans", sans-serif;
+  letter-spacing: .12em;
+  margin-right: auto;
+}
+
+.mobile-menu-foot {
+  color: color-mix(in oklab, var(--foreground) 48%, transparent);
+  display: flex;
+  font-size: .55rem;
+  justify-content: space-between;
+  letter-spacing: .16em;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-nav {
+    height: 66px;
+    padding: 0 6vw;
+  }
+
+  .desktop-nav,
+  .nav-instagram {
+    display: none;
+  }
+
+  .menu-trigger {
+    display: flex;
+  }
+
+  .wordmark-compact .wordmark-symbol {
+    width: 32px;
+    height: 32px;
+  }
+
+  .wordmark-gujarati {
+    font-size: .9rem;
+  }
+
+  .wordmark-subtitle {
+    font-size: .4rem;
+  }
+
+  .hero-content {
+    padding: 105px 8vw 100px;
+  }
+
+  .hero-kicker {
+    font-size: .5rem;
+    margin-bottom: 28px;
+  }
+
+  .hero-content>.wordmark .wordmark-symbol {
+    height: 50px;
+    width: 50px;
+  }
+
+  .hero-content>.wordmark .wordmark-gujarati {
+    font-size: 2rem;
+  }
+
+  .hero-content>.wordmark .wordmark-subtitle {
+    font-size: .52rem;
+  }
+
+  .hero-line {
+    font-size: 1.15rem;
+    margin: 25px 0;
+  }
+
+  .hero-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+    font-size: .5rem;
+  }
+
+  .meta-dot {
+    display: none;
+  }
+
+  .countdown {
+    gap: 14px;
+    margin-top: 38px;
+  }
+
+  .countdown-unit {
+    display: grid;
+    gap: 4px;
+  }
+
+  .countdown-unit strong {
+    font-size: 1.65rem;
+  }
+
+  .countdown-unit span {
+    font-size: .45rem;
+  }
+
+  .countdown-divider {
+    right: -10px;
+  }
+
+  .mandala-large {
+    height: 100vw;
+    right: -44vw;
+    top: 27%;
+    width: 100vw;
+  }
+
+  .scroll-cue {
+    bottom: 39px;
+    left: 8vw;
+  }
+
+  .hero-corner-note {
+    bottom: 37px;
+    right: 7vw;
+  }
+
+  .hero-corner-note span:first-child {
+    font-size: 2.1rem;
+  }
+
+  .hero-corner-note span:last-child {
+    font-size: .44rem;
+  }
+
+  .intro-section,
+  .nights-section,
+  .artists-section,
+  .experience-section,
+  .venue-section,
+  .social-section {
+    padding: 80px 8vw;
+  }
+
+  .intro-grid,
+  .experience-layout,
+  .venue-grid {
+    display: block;
+    margin: 58px 0 80px;
+  }
+
+  .intro-lead h2,
+  .section-heading h2 {
+    font-size: 4.3rem;
+  }
+
+  .intro-copy {
+    margin-top: 65px;
+  }
+
+  .intro-bottom {
+    font-size: .44rem;
+  }
+
+  .intro-bottom span:last-child {
+    display: none;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    display: block;
+    margin-bottom: 52px;
+  }
+
+  .heading-aside {
+    margin-top: 30px;
+  }
+
+  .heading-aside span {
+    font-size: 3rem;
+  }
+
+  .night-row {
+    gap: 12px;
+    grid-template-columns: 53px 1fr 33px;
+    padding: 17px 0;
+  }
+
+  .night-date {
+    font-size: 1.9rem;
+  }
+
+  .night-date small {
+    font-size: .42rem;
+  }
+
+  .night-artist strong {
+    font-size: .98rem;
+  }
+
+  .night-artist small {
+    font-size: .42rem;
+  }
+
+  .night-arrow {
+    height: 29px;
+    width: 29px;
+  }
+
+  .calendar-note {
+    font-size: .5rem;
+  }
+
+  .note-line {
+    width: 20%;
+  }
+
+  .statement-band {
+    min-height: 39vh;
+  }
+
+  .statement-band p {
+    font-size: 2.7rem;
+  }
+
+  .statement-ring {
+    height: 300px;
+    line-height: 300px;
+    width: 300px;
+  }
+
+  .statement-band>span {
+    bottom: 22px;
+    left: 8vw;
+    font-size: .47rem;
+  }
+
+  .artists-section {
+    padding-bottom: 100px;
+  }
+
+  .artists-intro {
+    font-size: .8rem;
+    margin-top: 35px;
+  }
+
+  .artist-card {
+    display: block;
+    min-height: 0;
+    padding: 18px 0;
+  }
+
+  .artist-portrait {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .artist-info {
+    gap: 14px;
+    grid-template-columns: 30px 1fr 52px;
+  }
+
+  .artist-info h3 {
+    font-size: 1.17rem;
+  }
+
+  .artist-info p {
+    font-size: .5rem;
+  }
+
+  .artist-number {
+    font-size: 1.15rem;
+  }
+
+  .artist-date {
+    font-size: .47rem;
+  }
+
+  .experience-section {
+    padding-bottom: 85px;
+  }
+
+  .experience-layout {
+    margin-bottom: 58px;
+  }
+
+  .experience-intro {
+    margin-top: 47px;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .experience-grid>div {
+    min-height: 215px;
+    padding: 17px;
+  }
+
+  .experience-grid>div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .experience-grid>div:nth-child(3),
+  .experience-grid>div:nth-child(4) {
+    border-top: 1px solid color-mix(in oklab, var(--plum) 22%, transparent);
+  }
+
+  .experience-grid h3 {
+    font-size: 1.1rem;
+    margin-top: 55px;
+  }
+
+  .experience-grid p {
+    font-size: .58rem;
+  }
+
+  .venue-grid {
+    margin: 55px 0 55px;
+  }
+
+  .venue-grid h2 {
+    font-size: 4.2rem;
+  }
+
+  .map-art {
+    margin-top: 62px;
+    min-height: 310px;
+  }
+
+  .map-art::before {
+    height: 260px;
+    left: 14%;
+    top: 8%;
+    width: 260px;
+  }
+
+  .map-art::after {
+    height: 180px;
+    left: 25%;
+    top: 21%;
+    width: 180px;
+  }
+
+  .map-pin {
+    left: 42%;
+    top: 37%;
+  }
+
+  .venue-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    font-size: .47rem;
+    gap: 13px;
+  }
+
+  .social-section {
+    min-height: 560px;
+  }
+
+  .social-copy h2 {
+    font-size: 4.5rem;
+  }
+
+  .social-stamp {
+    height: 170px;
+    margin-top: 60px;
+    width: 170px;
+  }
+
+  .social-stamp::before {
+    inset: 13px;
+  }
+
+  .stamp-ring {
+    font-size: .29rem;
+  }
+
+  .social-section {
+    align-items: flex-start;
+    display: block;
+  }
+
+  .final-section {
+    min-height: 75vh;
+  }
+
+  .final-content {
+    padding: 120px 8vw;
+  }
+
+  .final-content h2 {
+    font-size: 4.2rem;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    display: grid;
+    gap: 33px;
+    padding: 31px 8vw;
+  }
+
+  .footer-details {
+    text-align: left;
+  }
+
+  .site-footer>a {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+  }
+}
+
+/* NEW STYLES FOR ARTISTS, MAP AND SPONSORS */
+.portrait-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  z-index: 0;
+}
+
+/* Individual overrides if some photos are framed differently (lower % = shifts crop UP to show more head) */
+.portrait-rose .portrait-photo { object-position: center 15%; }
+.portrait-amber .portrait-photo { object-position: center 15%; }
+.portrait-ruby .portrait-photo { object-position: center 15%; }
+.portrait-plum .portrait-photo { object-position: center 15%; }
+.portrait-coral .portrait-photo { object-position: center 15%; }
+.portrait-wine .portrait-photo { object-position: center 15%; }
+
+.map-embed {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 410px;
+  background: var(--plum);
+  display: flex;
+  flex-direction: column;
+}
+
+.map-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-overlay-card {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--plum);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  max-width: 280px;
+  color: var(--ivory);
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.map-overlay-card h4 {
+  font-family: "Noto Sans Gujarati", sans-serif;
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+  color: var(--gold);
+}
+
+.map-overlay-card p {
+  font-size: 0.7rem;
+  color: color-mix(in oklab, var(--ivory) 75%, transparent);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.map-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.map-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--gold) 15%, transparent);
+  color: var(--gold);
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  transition: all 0.2s ease;
+}
+
+.map-actions a:hover {
+  background: var(--gold);
+  color: var(--plum);
+}
+
+.sponsors-section {
+  padding: 120px 9vw;
+}
+
+.sponsor-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10%;
+}
+
+.sponsors-subtext {
+  color: color-mix(in oklab, var(--foreground) 63%, transparent);
+  font-size: 0.9rem;
+  line-height: 1.9;
+  max-width: 340px;
+  margin-top: 20px;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.sponsor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.sponsor-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  background: color-mix(in oklab, var(--foreground) 2%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.sponsor-corner {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--gold);
+}
+
+.sponsor-corner.tl {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.sponsor-corner.tr {
+  top: -1px;
+  right: -1px;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.sponsor-corner.bl {
+  bottom: -1px;
+  left: -1px;
+  border-right: 0;
+  border-top: 0;
+}
+
+.sponsor-corner.br {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.sponsor-logo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: color-mix(in oklab, var(--foreground) 5%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+.sponsor-name {
+  font-size: 0.7rem;
+  color: color-mix(in oklab, var(--foreground) 70%, transparent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sponsors-coming-soon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.sponsor-card.coming-soon .sponsor-frame {
+  border-style: dashed;
+  opacity: 0.5;
+}
+
+.sponsor-card.coming-soon span {
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 1024px) {
+
+  .sponsors-grid,
+  .sponsors-coming-soon {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .sponsors-section {
+    padding: 80px 8vw;
+  }
+
+  .sponsors-grid,
+  .sponsors-coming-soon {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .map-overlay-card {
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .map-embed iframe {
+    position: relative;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .sponsors-grid,
+  .sponsors-coming-soon {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- NEW CAROUSEL STYLES --- */
+.artists-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  height: 500px;
+  touch-action: pan-y pinch-zoom;
+}
+
+.carousel-card {
+  position: relative;
+  flex: 0 0 300px;
+  min-width: 0;
+  height: 450px;
+  margin: 0 10px;
+  border-radius: 150px 150px 12px 12px;
+  border: 1px solid var(--gold);
+  overflow: hidden;
+  cursor: pointer;
+  transform: scale(calc(1 - var(--abs-offset) * 0.15));
+  opacity: calc(1 - var(--abs-offset) * 0.4);
+}
+
+.carousel-card.active {
+  pointer-events: auto;
+  filter: blur(0);
+  z-index: 10;
+  box-shadow: 0 0 30px color-mix(in oklab, var(--gold) 30%, transparent);
+}
+
+.carousel-card:not(.active) {
+  filter: blur(calc(var(--abs-offset) * 2px));
+}
+
+.card-image-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: color-mix(in oklab, var(--plum) 80%, black);
+  z-index: 0;
+}
+
+.carousel-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+.card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--background) 0%, transparent 40%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card-badge {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: color-mix(in oklab, var(--burgundy) 80%, var(--gold));
+  color: var(--ivory);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  z-index: 10;
+  border: 1px solid var(--gold);
+}
+
+.card-info-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 15px;
+  background: rgba(40, 10, 20, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-gujarati {
+  font-family: "Noto Sans Gujarati", sans-serif;
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+
+.card-english {
+  color: var(--ivory);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+@media (max-width: 760px) {
+  .carousel-track {
+    height: 400px;
+  }
+  .carousel-card {
+    flex: 0 0 240px;
+    height: 360px;
+    border-radius: 120px 120px 12px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-card {
+    transition: opacity 0.3s ease;
+    transform: none !important;
+    filter: none !important;
+  }
+}
